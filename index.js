@@ -1,0 +1,14 @@
+// TIPOS DE DADO
+////STRING (PALAVRA)
+////NUMBER (NUMERO)
+////ARRAY (LISTA)
+////BOOLEAN
+
+// VARIÁVEIS
+
+// FUNCOES
+
+// LOOPS
+////FOR
+////FOREACH
+////WHILE
