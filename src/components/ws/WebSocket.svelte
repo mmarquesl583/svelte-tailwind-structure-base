@@ -6,7 +6,7 @@
   let device_list = []
   let update
   let payload = []
-  let formatted_data = []
+  let groupedDeviceList = []
 
   let conds = [
     {
@@ -14,7 +14,7 @@
         { origin: "Acácia",name: "Internet", ip: "10.0.27.1"},
         { origin: "Acácia",name: "VoIp", ip: "10.0.27.3"},
         { origin: "Acácia",name: "Cam1", ip: "10.0.27.11"},
-        { origin: "Acácia",name: "Cam2", ip: "10.0.27.210"},
+        { origin: "Acácia",name: "JFL1", ip: "10.0.27.27"},
         { origin: "Acácia",name: "ControlId1", ip: "10.0.27.31"},
         { origin: "Acácia",name: "ControlId2", ip: "10.0.27.32"},
       ]
@@ -24,9 +24,40 @@
         { origin: "Albatroz",name: "Internet", ip: "10.0.56.1"},
         { origin: "Albatroz",name: "VoIp", ip: "10.0.56.5"},
         { origin: "Albatroz",name: "Cam1", ip: "10.0.56.11"},
-        { origin: "Albatroz",name: "Cam2", ip: "10.0.56.21"},
+        { origin: "Albatroz",name: "JFL1", ip: "10.0.56.25"},
         { origin: "Albatroz",name: "ControlId1", ip: "10.0.56.31"},
         { origin: "Albatroz",name: "ControlId2", ip: "10.0.56.32"},
+      ]
+    },
+    {
+      devices: [
+        { origin: "Markzada's Cond",name: "Internet", ip: "10.0.2232.1"},
+        { origin: "Markzada's Cond",name: "VoIp", ip: "10.0.22.5"},
+        { origin: "Markzada's Cond",name: "Cam1", ip: "10.0.22.11"},
+        { origin: "Markzada's Cond",name: "JFL1", ip: "10.0.22.25"},
+        { origin: "Markzada's Cond",name: "ControlId1", ip: "10.0.22.31"},
+        { origin: "Markzada's Cond",name: "ControlId2", ip: "10.0.22.32"},
+      ]
+    },
+    {
+      devices: [
+        { origin: "AndrePt's Cond",name: "Internet", ip: "10.0.56.1"},
+        { origin: "AndrePt's Cond",name: "VoIp", ip: "10.0.56.5"},
+        { origin: "AndrePt's Cond",name: "Cam1", ip: "10.0.576.9"},
+        { origin: "AndrePt's Cond",name: "JFL1", ip: "10.0.56.15"},
+        { origin: "AndrePt's Cond",name: "JFL1", ip: "10.0.56.25"},
+        { origin: "AndrePt's Cond",name: "ControlId1", ip: "10.0.56.31"},
+        { origin: "AndrePt's Cond",name: "ControlId2", ip: "10.0.56.32"},
+      ]
+    },
+    {
+      devices: [
+        { origin: "Dougbomb",name: "Internet", ip: "10.0.56.1"},
+        { origin: "Dougbomb",name: "VoIp", ip: "10.0.56.5"},
+        { origin: "Dougbomb",name: "Cam1", ip: "10.0.56.11"},
+        { origin: "Dougbomb",name: "JFL1", ip: "10.0.56.25"},
+        { origin: "Dougbomb",name: "ControlId1", ip: "10.0.56.31"},
+        { origin: "Dougbomb",name: "ControlId2", ip: "10.0.56.32"},
       ]
     },
   ]
@@ -55,38 +86,37 @@
 
     socket.onopen = (event) => {
       console.log("Conexão estabelecida.");
-      socket.send(JSON.stringify({devices: payload}))
+      // socket.send(JSON.stringify({devices: payload}))
     };
 
     socket.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        let index = 0
-        if("status" in data){
+        if("event" in data){
           update = data
-        console.log(data)
+          // console.log(data)
         }
         else if("devices" in  data){
           device_list = data.devices
-          console.log(device_list)
-          for(let i = 0; i < device_list.length; i++) {
-            if(i > 0){
-              if(device_list[i].origin != device_list[i-1].origin){
-                formatted_data[index] = device_list[i].origin
-                index++
-              }
-            }
-            else{
-              formatted_data[index] = device_list[i].origin
-              index++
-            }
-          }
-          console.log(formatted_data)
+          groupedDeviceList = groupDevicesByOrigin(device_list);
         }
     };
+
+    function groupDevicesByOrigin(devices) {
+      const groupedDevices = {};
+      for (const device of devices) {
+        if (!groupedDevices[device.origin]) {
+          groupedDevices[device.origin] = [];
+        }
+        groupedDevices[device.origin].push(device);
+      }
+      return Object.values(groupedDevices);
+    }
 </script>
 
-{#each device_list as data}
+{#each groupedDeviceList as data}
   <div>
-    <Card {data}/>
+      <div>
+        <Card {data}/>
+      </div>
   </div>
 {/each}
