@@ -35,6 +35,6 @@
   </div>
 </div>
 
-<div class="grid grid-cols-3 gap-1 lg:grid-cols-5 p-1 grid-rows-6 ">
+<div class="grid grid-cols-3 gap-1 lg:grid-cols-5 p-1">
   <WebSocket />
 </div>
