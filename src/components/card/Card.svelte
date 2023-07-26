@@ -8,7 +8,9 @@
     let jfl = []
     let acesso = []
 
-    let card_class = "card w-auto h-auto border border-black p-3"
+    let ips_off = []
+
+    let card_class = "card w-auto h-full border border-black p-3"
 
     let internet_class = "text-4xl fa-solid fa-wifi"
     let voz_class = "text-4xl fa-solid fa-phone-volume"
@@ -52,6 +54,7 @@
       let on = true
       for(let i = 0; i < imagem.length; i++){
         if(!imagem[i].status){
+          ips_off.push(imagem[i].ip)
           on = false
           break
         }
@@ -72,6 +75,7 @@
       let on = true
       for(let i = 0; i < acesso.length; i++){
         if(!acesso[i].status){
+          ips_off.push(acesso[i].ip)
           on = false
           break
         }
@@ -92,6 +96,7 @@
       let on = true
       for(let i = 0; i < jfl.length; i++){
         if(!jfl[i].status){
+          ips_off.push(jfl[i].ip)
           on = false
           break
         }
@@ -112,6 +117,7 @@
       let on = true
       for(let i = 0; i < voz.length; i++){
         if(!voz[i].status){
+          ips_off.push(voz[i].ip)
           on = false
           break
         }
@@ -132,6 +138,7 @@
       let on = true
       for(let i = 0; i < internet.length; i++){
         if(!internet[i].status){
+          ips_off.push(internet[i].ip)
           on = false
           break
         }
@@ -167,11 +174,16 @@
 
 
 <div class={card_class}>
-  <div class="name uppercase font-bold text-2xl border-b-2 ">
+  <div class="name uppercase font-bold text-2xl border-b-2">
     <i class="fa-solid fa-building mr-1"></i>
     {nome}
   </div>
-  <div class="flex w-full h-16 justify-around items-end">
+  {#each ips_off as ip_off}
+    <div class="text-lg font-bold">
+      {ip_off}
+    </div>
+  {/each}
+  <div class="flex w-full justify-around items-end">
     <div>
       <i class={internet_class}></i>
     </div>
@@ -189,3 +201,6 @@
     </div>
   </div>
 </div>
+
+<style>
+</style>

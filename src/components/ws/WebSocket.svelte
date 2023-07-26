@@ -115,8 +115,6 @@
 
 {#each groupedDeviceList as data}
   <div>
-      <div>
-        <Card {data}/>
-      </div>
+    <Card {data}/>
   </div>
 {/each}
