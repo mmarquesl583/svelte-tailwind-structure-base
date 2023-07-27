@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="div-maior">
+            <div class="div-superior">Div Superior</div>
+            <div class="div-inferior">Div Inferior</div>
+        </div>
+    </body>
+</html>
+
+<style>
+    /* Estilo para a div maior */
+    .div-maior {
+        position: relative;
+        width: 300px; /* Defina a largura que desejar */
+        height: 300px; /* Defina a altura que desejar */
+        border: 2px solid black; /* Apenas para visualização da div maior */
+    }
+
+    /* Estilo para a div superior */
+    .div-superior {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 30px; /* Altura da div superior (30 pixels) */
+        background-color: red; /* Apenas para visualização da div superior */
+    }
+
+    /* Estilo para a div inferior */
+    .div-inferior {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30px; /* Altura da div inferior (30 pixels) */
+        background-color: blue; /* Apenas para visualização da div inferior */
+    }
+</style>

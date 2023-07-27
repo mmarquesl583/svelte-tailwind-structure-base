@@ -10,7 +10,7 @@
 
     let ips_off = []
 
-    let card_class = "card w-auto h-full border border-black p-3"
+    let card_class = "card w-auto border border-black p-3 relative"
 
     let internet_class = "text-4xl fa-solid fa-wifi"
     let voz_class = "text-4xl fa-solid fa-phone-volume"
@@ -174,33 +174,55 @@
 
 
 <div class={card_class}>
-  <div class="name uppercase font-bold text-2xl border-b-2">
+  <div class="name uppercase font-bold text-2xl border-b-2 items-start ml-2">
     <i class="fa-solid fa-building mr-1"></i>
     {nome}
   </div>
-  {#each ips_off as ip_off}
-    <div class="text-lg font-bold">
-      {ip_off}
+  <div class="items-end w-full h-auto">
+    <div class="text-lg h-auto font-bold ml-2 mt-2 flex ">
+      {#if ips_off.length === 1}
+        <span>{ips_off[0]}</span>
+      {:else}
+        {#each ips_off as ip_off}
+          {#if ip_off != ips_off[0]}
+            <span> - </span>
+          {/if}
+          <span>{ip_off}</span>
+        {/each}
+      {/if}
     </div>
-  {/each}
-  <div class="flex w-full justify-around items-end">
-    <div>
-      <i class={internet_class}></i>
-    </div>
-    <div>
-      <i class={voz_class}></i>
-    </div>
-    <div>
-      <i class={imagem_class}></i>
-    </div>
-    <div>
-      <i class={jfl_class}></i>
-    </div>
-    <div>
-      <i class={acesso_class}></i>
+    <div class="flex w-full justify-around">
+      <div>
+        <i class={internet_class}></i>
+      </div>
+      <div>
+        <i class={voz_class}></i>
+      </div>
+      <div>
+        <i class={imagem_class}></i>
+      </div>
+      <div>
+        <i class={jfl_class}></i>
+      </div>
+      <div>
+        <i class={acesso_class}></i>
+      </div>
     </div>
   </div>
 </div>
 
 <style>
+  .card{
+    min-height: 100px;
+  }
+  .items-start{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .items-end{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 </style>
