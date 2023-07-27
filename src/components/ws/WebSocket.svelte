@@ -55,7 +55,8 @@
 
     socket.onopen = (event) => {
       console.log("Conexão estabelecida.");
-      setTimeout(() => {window.location.reload()}, 60000)
+      setTimeout(() => {window.location.reload()}, 15000)
+      // socket.send(JSON.stringify({interval: 30}))
       // socket.send(JSON.stringify({devices: payload}))
     };
 
