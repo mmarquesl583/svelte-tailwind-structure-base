@@ -29,37 +29,6 @@
         { origin: "Albatroz",name: "ControlId2", ip: "10.0.56.32"},
       ]
     },
-    {
-      devices: [
-        { origin: "Markzada's Cond",name: "Internet", ip: "10.0.2232.1"},
-        { origin: "Markzada's Cond",name: "VoIp", ip: "10.0.22.5"},
-        { origin: "Markzada's Cond",name: "Cam1", ip: "10.0.22.11"},
-        { origin: "Markzada's Cond",name: "JFL1", ip: "10.0.22.25"},
-        { origin: "Markzada's Cond",name: "ControlId1", ip: "10.0.22.31"},
-        { origin: "Markzada's Cond",name: "ControlId2", ip: "10.0.22.32"},
-      ]
-    },
-    {
-      devices: [
-        { origin: "AndrePt's Cond",name: "Internet", ip: "10.0.56.1"},
-        { origin: "AndrePt's Cond",name: "VoIp", ip: "10.0.56.5"},
-        { origin: "AndrePt's Cond",name: "Cam1", ip: "10.0.576.9"},
-        { origin: "AndrePt's Cond",name: "JFL1", ip: "10.0.56.15"},
-        { origin: "AndrePt's Cond",name: "JFL1", ip: "10.0.56.25"},
-        { origin: "AndrePt's Cond",name: "ControlId1", ip: "10.0.56.31"},
-        { origin: "AndrePt's Cond",name: "ControlId2", ip: "10.0.56.32"},
-      ]
-    },
-    {
-      devices: [
-        { origin: "Dougbomb",name: "Internet", ip: "10.0.56.1"},
-        { origin: "Dougbomb",name: "VoIp", ip: "10.0.56.5"},
-        { origin: "Dougbomb",name: "Cam1", ip: "10.0.56.11"},
-        { origin: "Dougbomb",name: "JFL1", ip: "10.0.56.25"},
-        { origin: "Dougbomb",name: "ControlId1", ip: "10.0.56.31"},
-        { origin: "Dougbomb",name: "ControlId2", ip: "10.0.56.32"},
-      ]
-    },
   ]
 
   let count = 0
@@ -86,6 +55,7 @@
 
     socket.onopen = (event) => {
       console.log("Conexão estabelecida.");
+      setTimeout(() => {window.location.reload()}, 60000)
       // socket.send(JSON.stringify({devices: payload}))
     };
 
