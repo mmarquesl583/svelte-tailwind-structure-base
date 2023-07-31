@@ -48,7 +48,7 @@
       }
     }
 
-    console.log(data)
+    // console.log(data)
 
     function verifyImage(){
       let on = true
@@ -67,7 +67,7 @@
         card_class += " bg-red-300 bg-opacity-80"
         imagem_class += " text-red-700"
         on = true
-        console.log(nome + " - Imagem")
+        // console.log(nome + " - Imagem")
       }
     }
 
@@ -109,7 +109,7 @@
         card_class += " bg-red-300 bg-opacity-80"
         jfl_class += " text-red-700"
         on = true
-        console.log(nome + " - Jfl")
+        // console.log(nome + " - Jfl")
       }
     }
 
@@ -130,7 +130,7 @@
         card_class += " bg-red-300 bg-opacity-80"
         voz_class += " text-red-700"
         on = true
-        console.log(nome + " - Voz")
+        // console.log(nome + " - Voz")
       }
     }
 
@@ -159,17 +159,11 @@
         imagem_class += " opacity-5"
         jfl_class += " opacity-5"
         acesso_class += " opacity-5"
-        console.log(nome + " - Internet")
+        // console.log(nome + " - Internet")
       }
     }
 
     verifyInternet()
-
-    // console.log(internet)
-    // console.log(voz)
-    // console.log(imagem)
-    // console.log(jfl)
-    // console.log(acesso)
 </script>
 
 

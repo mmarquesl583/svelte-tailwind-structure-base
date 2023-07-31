@@ -4,7 +4,6 @@
   // const socket = new WebSocket("ws://192.168.3.28:8090");
 
   let device_list = []
-  let update
   let payload = []
   let groupedDeviceList = []
 
@@ -39,18 +38,6 @@
     }
   }
 
-// var conds2 = []
-// for (let dev of payload.devices) {
-//   for (let i in conds) {
-//     for (let j in conds[i].devices) {
-//       if (conds[i].devices[j].ip == dev.ip) {
-//         conds[i].devices[j].online = dev.online;
-//         break;
-//       }
-//     }
-//   }
-// }
-
 // conds = conds2;
 
     socket.onopen = (event) => {
@@ -63,8 +50,15 @@
     socket.onmessage = (event) => {
         const data = JSON.parse(event.data);
         if("event" in data){
-          update = data
-          // console.log(data)
+          console.log(data.data.device)
+          groupedDeviceList.forEach(cond => {
+            cond.forEach(device => {
+              if(device.ip == data.data.device.ip){
+                device.online = data.data.device.online
+              }
+            });
+          });
+          // console.log(groupedDeviceList)
         }
         else if("devices" in  data){
           device_list = data.devices
