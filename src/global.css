@@ -5,3 +5,28 @@
 .btn-red {
     @apply bg-red-500 active:bg-red-600 text-white hover:shadow-xl hover:bg-red-600 focus:bg-red-600;
 }
+
+.add {
+    @apply bg-green-500 bg-red-500 opacity-80 opacity-30 opacity-5;
+}
+
+.alpha-1 {
+    @apply opacity-80;
+}
+.alpha-2 {
+    @apply opacity-80;
+}
+
+.card {
+    min-height: 100px;
+}
+.items-start {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.items-end {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}

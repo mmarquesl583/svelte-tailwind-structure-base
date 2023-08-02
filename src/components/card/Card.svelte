@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     export let data
     let nome = data[0].origin
 
@@ -186,8 +186,11 @@
       {/if}
     </div>
     <div class="flex w-full justify-around">
-      <div>
+      <div class="relative">
         <i class={internet_class}></i>
+        <!-- <span class="bg-red-500 text-white rounded-full absolute font-mono text-xs px-1 bottom-0 -ml-1 ">
+          3
+        </span>
       </div>
       <div>
         <i class={voz_class}></i>
@@ -203,20 +206,112 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<style>
-  .card{
-    min-height: 100px;
+
+<script>
+  import { afterUpdate } from "svelte";
+
+  export let data;
+
+  let color;
+  let ips_off = [];
+
+  let types = {
+    imagem: {
+      class:"text-4xl fa-solid fa-camera",
+      online: true,
+      counter: 0
+    },
+    internet: {
+      class:"text-4xl fa-solid fa-wifi",
+      online: true,
+      counter: 0
+    },
+    voz: {
+      class:"text-4xl fa-solid fa-phone-volume",
+      online: true,
+      counter: 0
+    },
+    jfl: {
+      class:"text-4xl fa-solid fa-keyboard",
+      online: true,
+      counter: 0
+    },
+    acesso: {
+      class:"text-4xl fa-solid fa-door-open",
+      online: true,
+      counter: 0
+    },
   }
-  .items-start{
-    position: absolute;
-    top: 0;
-    left: 0;
+
+  let icons = {
+
   }
-  .items-end{
-    position: absolute;
-    bottom: 0;
-    left: 0;
+
+  function getType(type){
+    const get = types[type]
+    get.counter++
+    console.log(types)
+    return get
   }
-</style>
+
+  function main() {
+    let trigger = false
+    let type
+
+    for(let i = 0; i < data.devices.length; i++){
+      if(data.devices[i].online == false){
+        const name = data.devices[i].type
+        type = getType(data.devices[i].type)
+        ips_off.push(data.devices[i].ip)
+        trigger = true
+      }
+    }
+    color = trigger? "red" :"green"
+
+    for (let t in types) {
+      var found = false
+      for(let i = 0; i < data.devices.length; i++) {
+        if (data.devices[i].type == t && !data.devices[i].online) {
+          types[data.devices[i].type].online = false
+          found = true
+          break
+        }
+      }
+      if (!found) types[t].online = true
+    }
+  }
+
+  afterUpdate(()=>{
+    main()
+  })
+</script>
+
+<div class="card w-auto border border-black p-3 relative bg-{color}-500 opacity-80 ">
+  <div class="name uppercase font-bold text-2xl border-b-2 items-start ml-2">
+    <i class="fa-solid fa-building mr-1"></i>
+    {data.name}
+  </div>
+  <div class="items-end w-full h-auto">
+    <div class="text-lg h-auto font-bold ml-2 mt-2 flex ">
+      {#if ips_off.length === 1}
+        <span>{ips_off[0]}</span>
+      {:else}
+        {#each ips_off as ip_off}
+          {#if ip_off != ips_off[0]}
+            <span> - </span>
+          {/if}
+          <span>{ip_off}</span>
+        {/each}
+      {/if}
+    </div>
+    <div class="flex w-full justify-around">
+      {#each Object.entries(types) as [name, content]}
+        <div class="relative opacity-{content.online ? "20" : "80"}">
+          <i class={content.class}></i>
+        </div>
+      {/each}
+    </div>
+  </div>
+</div>
