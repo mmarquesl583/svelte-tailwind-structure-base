@@ -2,12 +2,12 @@ export default [
     {
         name: "Acácia",
         devices: [
-            { ip: "10.0.40.1", type: "internet", alert: false, online: true },
-            { ip: "10.0.40.3", type: "voz", alert: false, online: true },
-            { ip: "10.0.40.11", type: "imagem", alert: false, online: true },
-            { ip: "10.0.40.21", type: "jfl", alert: false, online: true },
-            { ip: "10.0.40.31", type: "acesso", alert: false, online: true },
-            { ip: "10.0.40.32", type: "acesso", alert: false, online: true },
+            { ip: "10.0.27.1", type: "internet", alert: false, online: true },
+            { ip: "10.0.27.3", type: "voz", alert: false, online: true },
+            { ip: "10.0.27.11", type: "imagem", alert: false, online: true },
+            { ip: "10.0.27.21", type: "jfl", alert: false, online: true },
+            { ip: "10.0.27.31", type: "acesso", alert: false, online: true },
+            { ip: "10.0.27.32", type: "acesso", alert: false, online: true },
         ],
     },
     {
@@ -485,7 +485,7 @@ export default [
             { ip: "10.0.106.21", type: "jfl", alert: false, online: true },
             { ip: "10.0.106.31", type: "acesso", alert: false, online: true },
             { ip: "10.0.106.32", type: "acesso", alert: false, online: true },
-            { ip: "10.0.1106.35", type: "acesso", alert: false, online: true },
+            { ip: "10.0.106.35", type: "acesso", alert: false, online: true },
         ],
     },
 ];

@@ -218,13 +218,13 @@
   let ips_off = [];
 
   let types = {
-    imagem: {
-      class:"text-4xl fa-solid fa-camera",
+    internet: {
+      class:"text-4xl fa-solid fa-wifi",
       online: true,
       counter: 0
     },
-    internet: {
-      class:"text-4xl fa-solid fa-wifi",
+    imagem: {
+      class:"text-4xl fa-solid fa-camera",
       online: true,
       counter: 0
     },
@@ -272,13 +272,20 @@
 
     for (let t in types) {
       var found = false
+      var internet = false
       for(let i = 0; i < data.devices.length; i++) {
-        if (data.devices[i].type == t && !data.devices[i].online) {
+        if(data.devices[i].type == "internet" && !data.devices[i].online){
+          console.log(data.devices[i])
+          internet = true
+          types["internet"].online = false
+        }
+        else if (data.devices[i].type == t && !data.devices[i].online) {
           types[data.devices[i].type].online = false
           found = true
           break
         }
       }
+      if (internet) break
       if (!found) types[t].online = true
     }
   }
@@ -288,7 +295,7 @@
   })
 </script>
 
-<div class="card w-auto border border-black p-3 relative bg-{color}-500 opacity-80 ">
+<div class="card w-auto border border-black p-3 relative bg-{color}-500 opacity-70 ">
   <div class="name uppercase font-bold text-2xl border-b-2 items-start ml-2">
     <i class="fa-solid fa-building mr-1"></i>
     {data.name}
@@ -308,7 +315,7 @@
     </div>
     <div class="flex w-full justify-around">
       {#each Object.entries(types) as [name, content]}
-        <div class="relative opacity-{content.online ? "20" : "80"}">
+        <div class="relative alpha-{content.online ? "1" : "2"}">
           <i class={content.class}></i>
         </div>
       {/each}
