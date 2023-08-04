@@ -22,7 +22,7 @@
 
 
   onMount(() => {
-    const ws = new WebSocket("ws://localhost:8090");
+    const ws = new WebSocket("ws://192.168.3.102:8090");
     ws.onmessage = (e) => {
       const msg = JSON.parse(e.data)
       if (msg.event == "status") {
