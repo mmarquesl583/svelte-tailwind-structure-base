@@ -104,13 +104,13 @@
         <div class="relative alpha-{content.online ? "1" : "2"}">
           <i class={content.class}></i>
         </div>
-        <div class="relative">
+        <!-- <div class="relative">
           {#if content.counter > 0}
             <span class="bg-yellow-300 bottom-0 -ml-6 rounded-full absolute font-bold font-mono text-xs px-1">
               {content.counter}
             </span>
           {/if}
-        </div>
+        </div> -->
       {/each}
     </div>
   </div>
